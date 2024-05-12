@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post Room</title>
+  <link rel="stylesheet" type="text/css" href="post.css">
+</head>
+<body style="background:url(images/moiconnect.png);">
+  
+  <form id="roomForm" action="post.php" method="POST" enctype="multipart/form-data">
+    <h2>Post a Room</h2>
+    <label for="roomName">Room Name:</label><br>
+    <input type="text" id="roomName" name="roomName"><br>
+    <label for="roomType">Room Type:</label><br>
+    <input type="text" id="roomType" name="roomType"><br>
+    <label for="roomSize">Room Size:</label><br>
+    <input type="text" id="roomSize" name="roomSize"><br>
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="description"></textarea><br>
+    <label for="buildingLocation">Building/Location:</label><br>
+    <input type="text" id="buildingLocation" name="buildingLocation"><br>
+    <label for="roomImage">Room Image:</label><br>
+    <input type="file" id="roomImage" name="roomImage"><br><br>
+    <input type="submit" value="Submit">
+  </form>
+
+  <div id="message"></div>
+
+  <script src="post.js"></script>
+</body>
+</html>

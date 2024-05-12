@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+          body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:url(images/logo.jpg)  /* Light gray background */
+    }
+        /* Common styles for form boxes */
+        .form-box {
+            max-width: 400px; /* Limit the width of the form boxes */
+            margin: 0 auto; /* Center the form boxes horizontally */
+            padding: 20px; /* Add some padding inside the form boxes */
+            background-color: #f9f9f9; /* Background color for the form boxes */
+            border: 1px solid #ddd; /* Add a border around the form boxes */
+            border-radius: 5px; /* Add some rounded corners */
+            margin-bottom: 20px; /* Add some spacing between form boxes */
+        }
+
+        /* Styles for form details */
+        .form-details {
+            text-align: center; /* Center the text inside the form details */
+            margin-bottom: 20px; /* Add some spacing between form details and form content */
+        }
+
+        /* Styles for form content */
+        .form-content {
+            text-align: center; /* Center the form content */
+        }
+
+        /* Styles for input fields */
+        .input-field {
+            margin-bottom: 20px; /* Add some spacing between input fields */
+        }
+
+        /* Styles for buttons */
+        button[type="submit"] {
+            background-color: #4caf50; /* Green background color */
+            color: white; /* White text color */
+            padding: 10px 20px; /* Add padding */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Add some rounded corners */
+            cursor: pointer; /* Add cursor pointer on hover */
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049; /* Darker green background color on hover */
+        }
+
+        /* Hide the signup section initially */
+        .signup {
+            display: none;
+        }
+
+        /* Styles for signup link */
+        .signup-link {
+            text-align: center; /* Center the sign-up link */
+            margin-top: 20px; /* Add some margin on top of the signup link */
+        }
+
+        /* Center the form container */
+        .form-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column; /* Align items vertically */
+        }
+        .close-signup-link {
+      display: block;
+      text-align: right;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #777;
+      text-decoration: none;
+    }
+
+    .close-signup-link:hover {
+      color: #333;
+    }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-box landlord-login">
+            <div class="form-details">
+                <h2>Welcome Back Landlord</h2>
+                <p>Please log in using your personal information to manage your properties.</p>
+            </div>
+            <div class="form-content">
+                <h2>LANDLORD LOGIN</h2>
+                <form action="landlord-login.php" id="landlord-login-form-popup" method="POST">
+                    <div class="input-field">
+                        <input type="text" name="email" required placeholder="Email">
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="password" required placeholder="Password">
+                    </div>
+                    <a href="reset_password.html" class="forgot-pass-link" title="Click here to reset your password">Forgot password?</a>
+                    <button type="submit">Log In</button>
+                    <div class="signup-link">
+                      Don't have an account? <a href="#" class="signup-link">Sign up</a>
+                  </div>
+                </form>
+            </div>
+        </div>
+       
+        <!-- Signup Form -->
+        <div class="form-box signup">
+            <div class="form-details">
+                <h2>Create a Landlord Account</h2>
+                <p>Sign up now to manage your properties with ease.</p>
+            </div>
+            <div class="form-content">
+                <h2>SIGN UP</h2>
+                <form action="landlord-signup.php" id="landlord-signup-form-popup" method="POST">
+                    <div class="input-field">
+                        <input type="email" name="email" required placeholder="Email">
+                    </div>
+                    <div class="input-field">
+                        <input type="password" name="password" required placeholder="Password">
+                    </div>
+                    <button type="submit">Sign Up</button>
+
+                </form>
+                <a href="#" class="close-signup-link" id="close-signup-link">Close</a>
+            </div>
+        </div>
+    </div>
+
+   
+
+    <script>
+        
+        // JavaScript to show the signup section after clicking the signup link
+        document.querySelector('.signup-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.querySelector('.signup').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

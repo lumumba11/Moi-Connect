@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Reservation</title>
+    <style>
+        /* Global styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background:url(images/moiconnect.png);
+        }
+
+        /* Styles for room container */
+        .room-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* Styles for individual room */
+        .room {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: calc(30% - 40px); /* Adjusted width for ten rooms */
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Styles for room image */
+        .room-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Styles for button */
+        .btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        /* Styles for booking section */
+        #booking-section {
+            display: none;
+            margin-top: 50px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Styles for form inputs */
+        form {
+            display: grid;
+            gap: 10px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+
+        /* Styles for receipt */
+        .receipt-container {
+            margin-top: 50px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+            background-color:url(images/moiconnect.png);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: fixed;
+        }
+
+        .receipt-container h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+
+        .receipt-details {
+            margin-bottom: 20px;
+        }
+
+        .receipt-details p {
+            margin: 10px 0;
+        }
+
+        .thank-you {
+            font-style: italic;
+            text-align: center;
+        }
+
+        /* Styles for close link */
+        .close-link {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 16px;
+            color: #888;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .close-link:hover {
+            color: #555;
+        }
+
+        /* Styles for back button */
+        .back-btn {
+            margin-top: 20px;
+            display: block;
+            text-align: center;
+        }
+
+        /* Styles for footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+        }
+        footer p {
+            margin: 0;
+        }
+        .trademark {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" class="back-btn">Back to Home</a> <!-- Back button -->
+    <div class="room-container">
+        <!-- Room 1 -->
+        <div class="room">
+            <img src="images/clay01.jpg" alt="Room 1" class="room-image">
+            <img src="images/clay02.jpg" alt="Room 1 Interior 1" class="room-image">
+            <img src="images/clay03.jpg" alt="Room 1 Interior 2" class="room-image">
+            <h3>Room 1</h3>
+            <p>Description of Room 1</p>
+            <p class="rent" style="display:none;">KSH 200</p>
+            <button class="btn reserve-btn">Reserve</button>
+            <button class="btn book-btn" data-rent="200">Book</button>
+        </div>
+
+        <!-- Room 2 -->
+        <div class="room">
+            <img src="images/jt01.jpg" alt="Room 2" class="room-image">
+            <img src="images/jayt02.jpg" alt="Room 2 Interior 1" class="room-image">
+            <img src="images/jayt03.jpg" alt="Room 2 Interior 2" class="room-image">
+            <h3>Room 2</h3>
+            <p>Description of Room 2</p>
+            <p class="rent" style="display:none;">KSH 200</p>
+            <button class="btn reserve-btn">Reserve</button>
+            <button class="btn book-btn" data-rent="200">Book</button>
+        </div>
+
+        <!-- Add more rooms here -->
+
+    </div>
+
+    <!-- Booking Section -->
+    <section id="booking-section">
+        <a href="#" class="close-link">Close</a> <!-- Close link -->
+        <h2>Booking Details</h2>
+        <form id="payment-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            <label for="checkin">Check-in Date:</label>
+            <input type="date" id="checkin" name="checkin" required>
+            <label for="checkout">Check-out Date:</label>
+            <input type="date" id="checkout" name="checkout" required>
+            <label for="amount">Amount Required:</label>
+            <input type="text" id="amount" name="amount" required readonly>
+            <button type="submit" class="btn pay-btn">Pay Now</button>
+        </form>
+        
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; Lumumba Alex</p>
+    </footer>
+
+    <!-- Script for displaying booking section -->
+    <script>
+        // Get all book buttons
+        const bookButtons = document.querySelectorAll('.book-btn');
+
+        // Add click event listener to each book button
+        bookButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Show the booking section
+                document.getElementById('booking-section').style.display = 'block';
+                // Scroll to the booking section
+                document.getElementById('booking-section').scrollIntoView();
+                // Set the amount required based on the room's rent
+                const rent = button.getAttribute('data-rent');
+                document.getElementById('amount').value = rent;
+            });
+        });
+
+        // Set min and max date for check-in and check-out inputs
+        const today = new Date().toISOString().split('T')[0];
+        const fourYearsLater = new Date();
+        fourYearsLater.setFullYear(fourYearsLater.getFullYear() + 4);
+        const fourYearsLaterStr = fourYearsLater.toISOString().split('T')[0];
+        
+        document.getElementById('checkin').setAttribute('min', today);
+        document.getElementById('checkin').setAttribute('max', fourYearsLaterStr);
+        document.getElementById('checkout').setAttribute('min', today);
+        document.getElementById('checkout').setAttribute('max', fourYearsLaterStr);
+        
+        // Add event listener to check-in date to prevent backward bookings and calculate amount required
+        document.getElementById('checkin').addEventListener('change', function() {
+            const checkinDate = new Date(this.value);
+            console.log('Check-in date:', checkinDate);
+            const checkoutDate = new Date(document.getElementById('checkout').value);
+            console.log('Check-out date:', checkoutDate);
+            if (checkinDate >= checkoutDate) {
+                alert('Please select a valid check-out date.');
+                this.value = '';
+            }
+        });
+
+        // Add event listener to check-out date to calculate amount required
+        document.getElementById('checkout').addEventListener('change', function() {
+            const checkinDate = new Date(document.getElementById('checkin').value);
+            console.log('Check-in date:', checkinDate);
+            const checkoutDate = new Date(this.value);
+            console.log('Check-out date:', checkoutDate);
+            if (checkoutDate <= checkinDate) {
+                alert('Please select a valid check-out date.');
+                this.value = '';
+            }
+            const diffTime = Math.abs(checkoutDate - checkinDate);
+            const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+            const rentPerDay = parseFloat(document.getElementById('amount').value);
+            document.getElementById('amount').value = diffDays * rentPerDay;
+        });
+
+        // Event listener for payment submission
+        document.getElementById('payment-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Your payment processing logic here
+
+            // After successful payment processing, display receipt
+            generateReceipt();
+        });
+
+        // Function to generate receipt
+        function generateReceipt() {
+            // Get booking details from the form
+            const name = document.getElementById('name').value;
+            const checkin = document.getElementById('checkin').value;
+            const checkout = document.getElementById('checkout').value;
+            const amount = document.getElementById('amount').value;
+
+            // Create receipt HTML content
+            const receiptHTML = `
+                <div class="receipt-container">
+                    <h2>Receipt</h2>
+                    <div class="receipt-details" style="display:fixed;">
+                        <p><strong>Name:</strong> ${name}</p>
+                        <p><strong>Check-in Date:</strong> ${checkin}</p>
+                        <p><strong>Check-out Date:</strong> ${checkout}</p>
+                        <p><strong>Amount Paid:</strong> KSH ${amount}</p>
+                    </div>
+                    <p class="thank-you">Thank you for your reservation!</p>
+                </div>
+            `;
+
+            // Open receipt in a new window
+            const receiptWindow = window.open('', '_blank');
+            receiptWindow.document.write(receiptHTML);
+
+            // Hide the booking section after payment
+            document.getElementById('booking-section').style.display = 'none';
+        }
+
+        // Event listener for closing the booking section
+        document.querySelector('.close-link').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('booking-section').style.display = 'none';
+        });
+
+        // Event listener for back button
+        document.querySelector('.back-btn').addEventListener('click', function(event) {
+            event.preventDefault();
+            window.location.href = 'front.html'; // Replace 'front.html' with your home page URL
+        });
+    </script>
+</body>
+</html>

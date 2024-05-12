@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Tenant Login</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css"> <!-- Assume a stylesheet is linked -->
+
+  <style>
+    /* Center the form */
+    body, html {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background:url(images/logo.jpg)  /* Light gray background */
+    }
+
+    /* Additional styling */
+    header, div {
+      text-align: center;
+    }
+
+    .form-box {
+      max-width: 400px;
+      background-color: #fff; /* White background */
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+      padding: 20px;
+    }
+
+    .form-content {
+      margin-bottom: 20px;
+    }
+
+    .input-field {
+      margin-bottom: 15px;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+      width: 50%;
+      padding: 10px;
+      border: 1px solid #ccc; /* Light gray border */
+      border-radius: 5px;
+      box-sizing: border-box; /* Include padding and border in width */
+    }
+
+    label {
+      margin-bottom: 5px;
+    }
+
+    .forgot-pass-link {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+      text-decoration: none;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #007bff; /* Blue button */
+      color: #fff; /* White text */
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #0056b3; /* Darker blue on hover */
+    }
+
+    /* Style for closing link */
+    .close-signup-link {
+      display: block;
+      text-align: right;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #777;
+      text-decoration: none;
+    }
+
+    .close-signup-link:hover {
+      color: #333;
+    }
+
+    /* Hide the signup section initially */
+    .signup-box {
+      display: none;
+    }
+    .close-btn {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    cursor: pointer;
+    color: #000;
+}
+  </style>
+</head>
+<body>
+  
+  <div class="form-box" id="tenant-login">
+    <span class="close-btn material-symbols-rounded" aria-label="Close">close</span>
+    <form action="tenant-login.php" id="tenant-login-form-popup" method="POST">
+      <h2>Welcome Back Tenant</h2>
+      <p>Please log in using your personal information to manage your bookings.</p>
+      <div class="form-content">
+        <h2>TENANT LOGIN</h2>
+        <div class="input-field">
+          <label>Email: </label>
+          <input type="email" name="email" required placeholder="Email">
+        </div>
+        <div class="input-field">
+          <label>Password: </label>
+          <input type="password" name="password" required placeholder="Password">
+        </div>
+        <a href="reset_password.html" class="forgot-pass-link" title="Click here to reset your password">Forgot password?</a>
+        <button type="submit">Log In</button>
+      </div>
+    </form>
+    <a href="#" class="close-signup-link" id="close-signup-link" style=" .close-signup-link:hover {
+      color: #333;
+    }">Close</a>
+    <hr>
+    <div class="signup-box" id="tenant-signup-section"> <!-- Hide signup section initially -->
+      <h2>NEW TO OUR PLATFORM?</h2>
+      <p>Sign up to create an account and start managing your bookings.</p>
+      <form action="tenant-signup.php" id="tenant-signup-form-popup" method="POST">
+        <div class="input-field">
+          <label>Full Name: </label>
+          <input type="text" name="name" required placeholder="Full Name">
+        </div>
+        <div class="input-field">
+          <label>Email:</label>
+          <input type="email" name="email" required placeholder="Email">
+        </div>
+        <div class="input-field">
+          <label>Password</label>
+          <input type="password" name="password" required placeholder="Password">
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
+      <!-- Closing link for the signup section -->
+      <a href="#" class="close-signup-link" id="close-signup-link">Close</a>
+    </div>
+    <!-- Link to toggle visibility of signup section -->
+    <p><a href="#" id="show-signup-link">Sign Up</a></p>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const signupSection = document.getElementById('tenant-signup-section');
+      const showSignupLink = document.getElementById('show-signup-link');
+      const closeSignupLink = document.getElementById('close-signup-link');
+
+      // Show signup section when the link is clicked
+      showSignupLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        signupSection.style.display = 'block';
+      });
+
+      // Close signup section when the close link is clicked
+      closeSignupLink.addEventListener('click', function(event) {
+        event.preventDefault();
+        signupSection.style.display = 'none';
+      });
+    });
+  </script>
+</body>
+</html>
